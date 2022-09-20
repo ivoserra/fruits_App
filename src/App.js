@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom"
+import CreateFruit from "./components/CreateFruit"
+import Fruit from "./components/Fruit"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import ListOfFruits from "./components/ListofFruits"
+
+
+export default function App(){
+
+    return (
+        <Routes>
+            <Route path='/' element={<ListOfFruits/>}/>
+            <Route path='/fruit'>
+                <Route index path=":fruitId" element={<Fruit/>}/>
+            </Route>
+            <Route path='create' element={<CreateFruit/>}/>
+        </Routes>
+      
+    )
 }
-
-export default App;
