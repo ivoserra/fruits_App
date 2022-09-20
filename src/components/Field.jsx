@@ -1,26 +1,61 @@
 import { useContext } from "react";
 import { useState } from "react";
 import { UserContext } from "../Context/UserContext";
+import { useForm } from 'react-hook-form'
 
-export default function Field({ name, category, subject }) {
+import '../App.scss'
 
-  const { api, setApi }=useContext(UserContext)
+
+const Input = ({label, register, required})=>(
+  <section className="field_input">
+  <label>{label}</label>
+  <input {...register(label, {required}, { pattern:  /^[A-Za-z]+$/i })}/>
+  </section>
+  
+)
+
+export default function Field({ name, category, subject}) {
+
+  const {register} =useForm();
 
   const [edit, setEdit] = useState(false);
+  
 
-  return (
-    <div>
+  if( subject === "description"){
+
+    return(
+      <div className="Field">
       {edit ? (
         <section>
           <p>{category}</p>
-        <input name={subject} onChange={(e) => setApi({...api, [e.target.name] : e.target.value})} placeholder={name}/>
+          <textarea name={subject}/>
         </section>
       ) : (
-        <p>
-          {category}:{name}
-        </p>
+        <section>
+          <p>{category}</p>
+          <p>{name}</p>
+        </section>
+      )
+      }
+      <button onClick={ (e) => setEdit(!edit)} className="button-edit">Edit</button> 
+    </div>
+    )
+  }
+
+  return (
+    <div className="Field">
+      
+      { edit ? (
+        <section className="field_input">
+        <Input label={category} register={register}/>
+        </section>
+      ) : (
+        <section>
+        <p>{category}</p>
+        <p>{name}</p>
+      </section>
       )}
-      <button onClick={ (e) => setEdit(!edit)}>Edit</button> 
+      <button onClick={ (e) => setEdit(!edit)} className="button-edit">Edit</button> 
     </div>
   );
 }

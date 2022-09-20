@@ -1,0 +1,115 @@
+.header{
+    width:20%;
+    display:flex;
+    justify-content: space-around;  
+    
+    .button{
+        color:black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .button:hover{
+        color:blue;
+    }
+}
+
+.List{
+    width:50%;
+    height:700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .fruit{
+        text-decoration: none;
+        color:black;
+        cursor:pointer;
+    }
+
+    .fruit:hover{
+        color:blue;
+    }
+}
+
+.Field{
+    width:40%;
+    display:flex;
+    justify-content: space-between;
+    margin:1rem;
+    border:1px solid gray;
+    padding:1rem;
+
+
+    .field_input{
+        display:flex;
+        flex-direction: column;
+    }
+
+    .button-edit{
+        width:50px;
+        height:20px;
+    }
+}
+
+h1{
+    margin:1rem;
+    color:gray;
+}
+
+.Create_field{
+    display:flex;
+    flex-direction:column;
+    margin:1rem;
+    padding:0.5rem;
+    border:1px solid rgb(95, 95, 95);
+    border-radius: 5px;
+
+    input, textarea{
+        margin-top:0.5rem;
+        border-radius: 5px;
+        border:none;
+        border:1px solid gray;
+        resize:none;
+        height:2rem;
+        font: 1em/1.25em Arial, Helvetica, sans-serif
+    }
+}
+
+
+.Create{
+    
+    width:100%;
+    display:flex;
+    justify-content: space-around;
+
+        .Create_Inputs{
+            width:40%;
+            border:1px solid gray;
+            border-radius: 10px;
+            display:flex;
+            flex-direction: column;
+        
+
+            .button{
+                margin:1rem;
+                width:100px;
+                align-self:flex-end;
+                color:black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            .button:hover{
+                color:blue;
+            }
+
+
+        }
+   
+}
+
+ 
+
+    
+
+

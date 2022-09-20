@@ -1,19 +1,28 @@
+import { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
-import data from '../data/data.js'
+import { UserContext } from "../Context/UserContext.js";
+import CreateButton from "./CreateButton.jsx";
+import HomeButton from "./HomeButton.jsx";
 
+import '../App.scss'
 
 export default  function ListOfFruits(){
 
-    const api = data.fruits
-    console.log(api)
+    const { api, setApi } = useContext(UserContext)
 
 
     return(
-    <section>
-        <h2>Fruits list</h2>
-         { api.map(({id, fruit_name}) => <Link key={id} to={`/fruit/${id}`} > {fruit_name} </Link>)}
+    <>
+        <section className="header">
+            <HomeButton className="button"/>
+            <CreateButton className="button"/>
+        </section>
 
-         <Outlet/>
-    </section>
+        <h1>Fruits List</h1>
+        <section className="List">
+            { api.map(({id, fruit_name}) => <Link key={id} to={`/fruit/${id}`} className="fruit"> {fruit_name} </Link>)}
+        </section>
+        
+    </>
     )
 }

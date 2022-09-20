@@ -4,7 +4,6 @@ import Fruit from "./components/Fruit"
 
 import ListOfFruits from "./components/ListofFruits"
 
-
 export default function App(){
 
     return (
