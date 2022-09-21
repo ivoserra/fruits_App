@@ -1,50 +1,77 @@
-import { useContext } from "react";
+import { useState } from 'react'
+import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom"
-import { UserContext } from "../Context/UserContext";
-import { useForm } from 'react-hook-form'; 
+
+import { FRUIT } from "../queries/queries";
+
 
 import CreateButton from "./CreateButton";
-import Field from "./Field";
 import HomeButton from "./HomeButton";
+import UpdateFruit from "./UpdateFruit";
+
+
 
 export default function Fruit(){
 
-    const { api, setApi } =useContext(UserContext)
+    // const { api, setApi } =useContext(UserContext)
+    const [edit, setEdit] = useState(false);
 
-    const { handleSubmit } = useForm()
-    
-    const onSubmit = data => console.log(data)
-
+    // router
     const { fruitId } = useParams();
-    const item  = api.find(item => item.id === fruitId)
+    console.log('params',fruitId)
+    //const item  = api.find(item => item.id === fruitId) 
 
-    if(!item) return <p>Loading...</p>
+    const { loading, error, data } = useQuery(FRUIT, { variables: {id : fruitId }});
     
-    
+   // console.log('FRUIT', data.fruit)
+
+    if (loading) return <p>Loadinnng....</p>
+    if (error) return <p>` Ups.. ${error.message}`</p>
+
+
+
+
     return(
         <>
+        <div>
         <section className="header">
             <HomeButton/>
             <CreateButton/>
         </section>
 
+        <section>
+             <button onClick={ (e) => setEdit(!edit)} className="button-edit">
+                { !edit ? "Edit" : "Cancel" }
+            </button> 
+        </section>
 
-        <h1 >{item.fruit_name}</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <Field name={item.scientific_name} category="Scientific Name" subject="scientific_name" item={item}/>
-                <Field name={item.tree_name} category="Tree Name" subject="tree_name"/>
-                <Field name={item.fruit_name} category="Fruit Name" subject="fruit_name"/>
-                <Field name={item.family} category="Family" subject="family"/>
-                <Field name={item.origin} category="Origin" subject="origin"/>
-                <Field name={item.description} category="Description" subject="description"/>
-                <Field name={item.bloom} category="Bloom" subject="bloom"/>
-                <Field name={item.maturation_fruit} category="Maturation Fruit" subject="maturation_fruit"/>
-                <Field name={item.life_cycle} category="Life Cycle" subject="life_cycle"/>
-                <input type="submit"/>
-            </form>
+        <h1 >{data.fruit.fruit_name}</h1>
+        </div>
 
-        </>
-       
-      
+        <section>
+            { !edit ? (
+                <section key={data.fruit.id}>
+                    <p>Scientific Name: {data.fruit.scientific_name}</p>
+                    <p>Tree Name: {data.fruit.tree_name}</p>
+                    <p>Fruit Name: {data.fruit.fruit_name}</p>
+                    <p>Family: {data.fruit.family} </p>
+                    <p>Origin: {data.origin}</p>
+                    <p>Description: {data.fruit.description}</p>
+                    <p>Bloom: {data.fruit.bloom}</p>
+                    <p>Maturation Fruit:{data.fruit.maturation_fruit}</p>
+                    <p>Life Cycle: {data.fruit.life_cycle}</p>
+                    <p>Countries</p>
+                   { data.fruit.producing_countries.map(item => <p>{item.country}</p>)}
+                </section>) 
+                :
+                (
+                    <section>
+                        <UpdateFruit key={data.fruit.id} item={data.fruit}/>
+                    </section>
+
+                ) 
+            }
+        </section>
+      </>
     )
 }

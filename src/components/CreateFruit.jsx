@@ -1,4 +1,6 @@
+import { useMutation } from '@apollo/client';
 import { useForm } from 'react-hook-form'
+import { ADD_FRUIT } from '../queries/queries';
 import HomeButton from './HomeButton';
 
 
@@ -21,9 +23,13 @@ const TextArea =({label, register, required})=>(
 
 export default function CreateFruit(){
 
+    // 
+    const [ addFruit, { loading , error }] = useMutation(ADD_FRUIT)
+
+
+    // form
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  
-    const onSubmit = data => console.log(data)
+    const onSubmit = data => addFruit({ variables: { data } })
   
     return(
       <>
