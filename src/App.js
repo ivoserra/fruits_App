@@ -4,6 +4,8 @@ import CreateFruit from "./components/CreateFruit"
 import ListOfFruits from "./components/ListofFruits"
 import Fruit from "./components/Fruit"
 
+import'./App.scss'
+
 export default function App(){
 
     return (

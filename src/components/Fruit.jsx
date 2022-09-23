@@ -1,72 +1,103 @@
-import { useState } from 'react'
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom"
 
 import { FRUIT } from "../queries/queries";
-
-
 import CreateButton from "./CreateButton";
 import HomeButton from "./HomeButton";
 import UpdateFruit from "./UpdateFruit";
+import { useContext } from 'react';
+import { UserContext } from '../Context/UserContext';
+
+import {AiOutlineEdit} from 'react-icons/ai'
+import {MdCancel} from 'react-icons/md'
 
 
 
 export default function Fruit(){
 
-    // const { api, setApi } =useContext(UserContext)
-    const [edit, setEdit] = useState(false);
+    const { edit, setEdit } = useContext(UserContext)
 
     // router
     const { fruitId } = useParams();
-    console.log('params',fruitId)
-    //const item  = api.find(item => item.id === fruitId) 
+    
+    
 
     const { loading, error, data } = useQuery(FRUIT, { variables: {id : fruitId }});
     
-   // console.log('FRUIT', data.fruit)
-
-    if (loading) return <p>Loadinnng....</p>
+    if (loading) return <p>Loading....</p>
     if (error) return <p>` Ups.. ${error.message}`</p>
 
 
-
+    console.log(data.fruit)
 
     return(
         <>
-        <div>
+       
         <section className="header">
             <HomeButton/>
             <CreateButton/>
         </section>
+        
 
-        <section>
-             <button onClick={ (e) => setEdit(!edit)} className="button-edit">
-                { !edit ? "Edit" : "Cancel" }
+        <section className="Update">
+        <section className="update__header">
+        <h1 >{data.fruit.fruit_name}</h1>
+             <button onClick={ (e) => setEdit(!edit)} className="update__button">
+                { !edit ? <AiOutlineEdit/> : <MdCancel/>}
             </button> 
         </section>
-
-        <h1 >{data.fruit.fruit_name}</h1>
-        </div>
-
-        <section>
             { !edit ? (
-                <section key={data.fruit.id}>
-                    <p>Scientific Name: {data.fruit.scientific_name}</p>
-                    <p>Tree Name: {data.fruit.tree_name}</p>
-                    <p>Fruit Name: {data.fruit.fruit_name}</p>
-                    <p>Family: {data.fruit.family} </p>
-                    <p>Origin: {data.origin}</p>
-                    <p>Description: {data.fruit.description}</p>
-                    <p>Bloom: {data.fruit.bloom}</p>
-                    <p>Maturation Fruit:{data.fruit.maturation_fruit}</p>
-                    <p>Life Cycle: {data.fruit.life_cycle}</p>
-                    <p>Countries</p>
-                   { data.fruit.producing_countries.map(item => <p>{item.country}</p>)}
+                <section key={data.fruit.id} className="update__text">
+                    <ul>
+                        <li>
+                            <h3>Scientific Name:</h3>
+                            <p>{data.fruit.scientific_name}</p>
+                        </li>
+                        <li>
+                            <h3>Tree Name:</h3>
+                            <p>{data.fruit.tree_name}</p>
+                        </li>
+                        <li>
+                            <h3>Fruit Name:</h3>
+                            <p>{data.fruit.fruit_name}</p>
+                        </li>
+                        <li>
+                            <h3>Family:</h3>
+                            <p>{data.fruit.family}</p>
+                        </li>
+                        <li>
+                            <h3>Origin:</h3>
+                            <p>{data.fruit.origin}</p>
+                        </li>
+                        <li>
+                            <h3>Description:</h3>
+                            <p>{data.fruit.description}</p>
+                        </li>
+                        <li>
+                            <h3>Bloom: </h3>
+                            <p>Bloom: {data.fruit.bloom}</p>
+                        </li>
+                        <li>
+                            <h3>Maturation Fruit:</h3>
+                            <p>{data.fruit.maturation_fruit}</p>
+                        </li>
+                        <li>
+                            <h3>Life Cycle</h3>
+                            <p>{data.fruit.life_cycle}</p>
+                        </li>
+                        <li>
+                            <h3>Countries</h3>
+                            <section className="countries">
+                            { data.fruit.producing_countries.map(item => <p>{item.country}</p>)}
+                            </section>
+                           
+                        </li>
+                    </ul>   
                 </section>) 
                 :
                 (
-                    <section>
-                        <UpdateFruit key={data.fruit.id} item={data.fruit}/>
+                    <section className="update__text">
+                        <UpdateFruit key={data.fruit.id} item={data.fruit} setEdit={setEdit} className="update__text"/>
                     </section>
 
                 ) 

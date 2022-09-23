@@ -5,9 +5,9 @@ export const UserContext = React.createContext(null);
 
 export default function UserContextProvider(props){
 
-    const [ api, setApi ] = useState(data.fruits) 
+    const [ edit, setEdit ] = useState(false) 
 
-    const contextUser = { api, setApi }
+    const contextUser = { edit, setEdit }
 
     return(
         <UserContext.Provider value={contextUser}>

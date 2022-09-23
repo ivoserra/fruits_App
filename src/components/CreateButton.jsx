@@ -5,7 +5,7 @@ export default function CreateButton(){
 
 
     return(
-        <Link to="/create" className="button">Create</Link>
+        <Link to="/create" className="button"><p>Create</p></Link>
     )
 
 

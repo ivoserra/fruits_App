@@ -3,7 +3,7 @@ import CreateButton from "./CreateButton.jsx";
 import HomeButton from "./HomeButton.jsx";
 import { useQuery } from '@apollo/client';
 import { GET_FRUITS } from "../queries/queries.js";
-import '../App.scss'
+// import './ListofFruits.scss'
 
 export default  function ListOfFruits(){
 
@@ -11,6 +11,8 @@ export default  function ListOfFruits(){
 
     if (loading) return <p>Loading... </p>;
     if( error ) return `Ups ... ${error.message}`;
+    console.log(data.fruits)
+    
 
     return(
     <>
@@ -19,9 +21,11 @@ export default  function ListOfFruits(){
             <CreateButton className="button"/>
         </section>
 
-        <h1>Fruits List</h1>
         <section className="List">
-            { data.fruits.map(({id, fruit_name}) => <Link key={id} to={`/fruit/${id}`} className="fruit"> {fruit_name} </Link>)}
+            <h1>Fruits List</h1>
+            <section className="list__inner">
+                { data.fruits.map(({id, fruit_name}) => <Link key={id} to={`/fruit/${id}`} className="fruit"> {fruit_name} </Link>)}
+            </section>
         </section>
         
     </>
