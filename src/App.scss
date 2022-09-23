@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap');
 
-body{
+*{
     font-family: 'Ubuntu', sans-serif;
     margin:0;
     padding: 0;
@@ -36,6 +36,7 @@ input:focus{
     border-bottom: 3px solid red;
 }
 
+// header in  main page
 
 .header{
     width:40%;
@@ -59,6 +60,8 @@ input:focus{
        color: gray;
     }
 }
+
+// list of fruits pafe
 
 .List{
     width:100%;
@@ -93,6 +96,7 @@ input:focus{
 
 }
 
+// Fruit page and updateFruit component
 
 .Update{
     width:100%;
@@ -196,6 +200,7 @@ input:focus{
     
 }
 
+// create fruit page
 
 .Create{
     width:100%;
@@ -254,6 +259,72 @@ input:focus{
 
    
 }
+
+
+// loading and messages components
+
+// Loader component
+@keyframes load {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+    
+}
+
+.Loader{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:99vh;
+
+    .loading__icon{
+        font-size: 5rem;
+        animation: load 1s linear infinite;
+    }
+
+    
+}
+
+
+// Message Error component
+
+.Message{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:99vh;
+
+    .message__icon{
+        font-size: 5rem;
+    }
+
+    p{
+        margin-top:3rem;
+        font-size: 1rem;
+    }
+
+    button{
+        margin-top:3rem;
+        padding:0.5rem;
+        border:none;
+        background-color: white;
+        cursor:pointer;
+
+        &:hover{
+            color:gray;
+            scale:1.1;
+            border-bottom: 1px solid gray;
+        }
+    }
+       
+}
+
+    
 
 
  

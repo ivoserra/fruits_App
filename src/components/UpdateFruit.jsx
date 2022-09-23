@@ -2,7 +2,8 @@ import { useMutation } from '@apollo/client'
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { UserContext } from '../Context/UserContext'
-import { GET_FRUITS, UPDATE_FRUIT } from '../queries/queries'
+import { UPDATE_FRUIT } from '../queries/queries'
+import MessageComponent from './Error'
 
 
 const Input = ({label,register, required})=>(
@@ -27,14 +28,14 @@ export default function UpdateFruit({ item }) {
 
 
   // graphql
-  const [ updateFruit,{ loading, error, data , refetch, networkStatus} ] = useMutation(UPDATE_FRUIT , 
-    {refetchQueries: [{query: GET_FRUITS}, 'GetFruits']},
-    { notifyOnNetworkStatusChange: true}
+  const [ updateFruit,{ loading, error, networkStatus} ] = useMutation(UPDATE_FRUIT , 
+    {refetchQueries: [{query: UPDATE_FRUIT}, 'Fruit']},
+    
     )
 
   if ( networkStatus === 4 ) return 'Refetching!' 
   if (loading) return 'null'
-  if (error) return `Ups... ${error.message}`
+  if (error) return <MessageComponent error={error}/>
 
 
   const onSubmit = fruit => {

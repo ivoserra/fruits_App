@@ -1,9 +1,12 @@
 import React from 'react'
+import {RiLoader4Line} from 'react-icons/ri'
 
 const Loader = () => {
 
   return (
-    <div className="Loader"><p>Loading...</p></div>
+    <div className="Loader">
+       <RiLoader4Line className="loading__icon"/>
+    </div>
   )
 }
 

@@ -10,6 +10,7 @@ import { UserContext } from '../Context/UserContext';
 
 import {AiOutlineEdit} from 'react-icons/ai'
 import {MdCancel} from 'react-icons/md'
+import Loader from "./Loader";
 
 
 
@@ -24,7 +25,7 @@ export default function Fruit(){
 
     const { loading, error, data } = useQuery(FRUIT, { variables: {id : fruitId }});
     
-    if (loading) return <p>Loading....</p>
+    if (loading) return <Loader/>
     if (error) return <p>` Ups.. ${error.message}`</p>
 
 

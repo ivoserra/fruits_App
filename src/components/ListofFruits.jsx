@@ -3,15 +3,18 @@ import CreateButton from "./CreateButton.jsx";
 import HomeButton from "./HomeButton.jsx";
 import { useQuery } from '@apollo/client';
 import { GET_FRUITS } from "../queries/queries.js";
+import Loader from "./Loader.jsx";
+import MessageComponent from "./Error.jsx";
 // import './ListofFruits.scss'
 
 export default  function ListOfFruits(){
 
     const { loading, error, data } = useQuery(GET_FRUITS); 
 
-    if (loading) return <p>Loading... </p>;
-    if( error ) return `Ups ... ${error.message}`;
+    if (loading) return <Loader/>;
+    if( error ) return <MessageComponent error={error}/>;
     console.log(data.fruits)
+    
     
 
     return(
