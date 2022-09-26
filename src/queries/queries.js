@@ -1,6 +1,5 @@
 import { gql } from '@apollo/client';
 
-
 const GET_FRUITS = gql`
    query GetFruits{
      fruits{

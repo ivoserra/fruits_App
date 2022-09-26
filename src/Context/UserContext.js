@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import data from '../data/data'
+
 
 export const UserContext = React.createContext(null);
 

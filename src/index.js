@@ -20,21 +20,12 @@ const defaultOptions= {
 const client = new ApolloClient({
   uri:'https://fruits-api.netlify.app/graphql',
   cache: new InMemoryCache(),
-  defaultOptions: defaultOptions,
+  defaultOptions,
+  
 
 });
 
 
-/* const client = new ApolloClient({
-  uri:'https://fruits-api.netlify.app/graphql',
-  cache: new InMemoryCache({
-    UnconventionalRootQuery: {
-      queryType: true,
-    }
-
-
-  }),  
-}) */
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

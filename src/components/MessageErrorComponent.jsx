@@ -2,7 +2,7 @@ import React from 'react'
 import {TbFaceIdError} from 'react-icons/tb'
 import { useLocation } from 'react-router-dom'
 
-export const MessageComponent = ({error}) => {
+export const MessageErrorComponent = ({error}) => {
   const location = useLocation()
 
   return (
@@ -14,4 +14,4 @@ export const MessageComponent = ({error}) => {
   )
 }
 
-export default MessageComponent
+export default MessageErrorComponent
