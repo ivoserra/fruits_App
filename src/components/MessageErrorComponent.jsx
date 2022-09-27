@@ -3,6 +3,8 @@ import {TbFaceIdError} from 'react-icons/tb'
 import { useLocation } from 'react-router-dom'
 
 export const MessageErrorComponent = ({error}) => {
+
+  console.log(error)
   const location = useLocation()
 
   return (

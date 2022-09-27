@@ -8,37 +8,8 @@
 
 }
 
-input, textarea{
-    width:100%;
-    margin-top:1.5rem;
-    border:none;
-    border-bottom: 1px solid grey;
-    outline:none;
-    resize:none;
-    height:25px;
-}
-
-textarea{
-    outline:none;
-    height:100px;
-    resize:none;
-    margin: 1rem 0;
-    font-family: 'Ubuntu', sans-serif;
-
-    &:focus{
-        border:none;
-        border:3px solid red;
-        border-radius: 5px;
-    }
-}
-
-input:focus{
-    outline: none;
-    border-bottom: 3px solid red;
-}
 
 // header in  main page
-
 .header{
     width:100%;
     height:50px;
@@ -70,8 +41,7 @@ input:focus{
     }
 }
 
-// list of fruits pafe
-
+// list of fruits page
 .List{
     margin-top: 300px;
     width:100%;
@@ -110,9 +80,8 @@ input:focus{
 
 }
 
-// Fruit page and updateFruit component
-
-.Update{
+// Fruit page, updateFruit component and createpage component
+.Container{
     width:100%;
     display:flex;
     margin-top:5rem;
@@ -120,7 +89,7 @@ input:focus{
     align-items: center;
     border-radius: 5px;
 
-    .update__header{
+    .container__header{
         width:50%;
         display:flex;
         align-items: center;
@@ -149,12 +118,12 @@ input:focus{
         }
     }
 
-    .update__text{
+    .container__text{
+        
         width:50%;
         height:auto;
         margin:3rem 0;
       
-
         ul{
             list-style-type: none; 
             width:100%;
@@ -186,21 +155,57 @@ input:focus{
                 }
         }
 
-        .update__form{
+        .container__form{
+           
             display:flex;
             flex-direction:column;
             width:100%;
             padding: 1rem 0;
 
-            .update__field{
+            .container_form_field{
                 width:100%;
                 padding:1rem;
 
-                .Error{
-                    color:red;
-                    font-size: 0.8rem;
-                    margin:1rem 0;
+                .field_input{
+                    display:flex;
+                    flex-direction: column;
+
+                    .Error{
+                        color:red;
+                        font-size: 0.8rem;
+                        margin:1rem 0;
+                    }
+
+                    input, textarea{
+                        width:100%;
+                        margin-top:1.5rem;
+                        border:none;
+                        border-bottom: 1px solid grey;
+                        outline:none;
+                        resize:none;
+                        height:25px;
+                    }
+                    
+                    textarea{
+                        outline:none;
+                        height:100px;
+                        resize:none;
+                        margin: 1rem 0;
+                        font-family: 'Ubuntu', sans-serif;
+                    
+                        &:focus{
+                            border:none;
+                            border:3px solid red;
+                            border-radius: 5px;
+                        }
+                    }
+                    
+                    input:focus{
+                        outline: none;
+                        border-bottom: 3px solid red;
+                    }
                 }
+          
             }
 
             input[type="submit"]{
@@ -222,75 +227,8 @@ input:focus{
     
 }
 
-// create fruit page
-
-.Create{
-    width:100%;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    h1{
-        color:black;
-    }
-
-    .create__inner{
-        width:50%;
-        display:flex;
-        flex-direction: column;  
-        margin:2rem 0;
-        
-            input[type="submit"]{
-                border:none;
-                align-self:flex-end;
-
-                &:hover{
-                   
-                    border: 1px solid gray;
-                }
-            }
-
-            .Error {
-                color:red;
-                font-size: 0.8rem;
-                margin-left:2rem;
-            }
-        
-        .create__input{
-            display:flex;
-            flex-direction: column;
-            margin:0.5rem 1rem;
-            padding:1rem;
-
-        }
-
-        input[type="submit"]{
-            align-self: flex-end;
-            text-align: center;
-            background-color: white;
-            outline: none;
-            padding:0.5rem;
-            width:10vw;
-            cursor:pointer;
-
-            &:hover{
-                border:none;
-                color: red;
-                scale:1.1;
-               
-            }
-        }
-
-
-    }
-
-   
-}
-
 
 // loading and messages components
-
 // Loader component
 @keyframes load {
     0% {
@@ -307,19 +245,16 @@ input:focus{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height:900px;
+    height:90vh;
 
     .loading__icon{
         font-size: 5rem;
         animation: load 1s linear infinite;
     }
-
     
 }
 
-
 // Message Error component
-
 .Message{
     display:flex;
     flex-direction: column;

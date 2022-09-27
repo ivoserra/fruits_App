@@ -6,11 +6,10 @@ import { UserContext } from '../Context/UserContext';
 import {AiOutlineEdit} from 'react-icons/ai'
 import { MdCancel } from 'react-icons/md'
 import Loader from "./Loader";
-import CreateButton from "./CreateButton";
-import HomeButton from "./HomeButton";
+
 import UpdateFruit from "./UpdateFruit";
 import MessageErrorComponent from "./MessageErrorComponent";
-import { Header } from "./Header";
+
 
 
 
@@ -18,29 +17,32 @@ export default function Fruit(){
 
     const { edit, setEdit } = useContext(UserContext)
 
+  
     // router
     const { fruitId } = useParams();
     
-    
 
     const { loading, error, data } = useQuery(FRUIT, { variables: {id : fruitId }});
-    
-    if (loading) return <Loader/>
-    if (error) return <MessageErrorComponent error={error}/>
 
+
+    
+    console.log(data)
+    if (loading) return <Loader/>
+    if (error) return  <MessageErrorComponent error={error}/>
+    
 
 
     return(
         <>
-        <section className="Update">
-        <section className="update__header">
+        <section className="Container">
+        <section className="container__header">
             <h1 >{data.fruit.fruit_name}</h1>
              <button onClick={ (e) => setEdit(!edit)} className="update__button">
                 { !edit ? <AiOutlineEdit/> : <MdCancel/>}
             </button> 
         </section>
             { !edit ? (
-                <section key={data.fruit.id} className="update__text">
+                <section key={data.fruit.id} className="container__text">
                     <ul>
                      {/*    {Object.keys(data.fruit).map((key) => {
                             if(typeof data.fruit[key] === 'object'){
@@ -95,7 +97,7 @@ export default function Fruit(){
                 </section>) 
                 :
                 (
-                    <section className="update__text">
+                    <section className="container__text">
                         <UpdateFruit key={data.fruit.id} item={data.fruit} setEdit={setEdit} className="update__text"/>
                     </section>
 
