@@ -37,12 +37,12 @@ export default function CreateFruit() {
   return (
 
       <div className="Container">
-        <section className="container__header">
+        <section className="container-header">
           <h1>Create a Fruit</h1>
         </section>
    
-        <div className="container__text">
-        <form onSubmit={handleSubmit(onSubmit)} className="container__form">
+        <div className="container-text">
+        <form onSubmit={handleSubmit(onSubmit)} className="container-form">
 
           <section className="container_form_field">
           <Input

@@ -40,7 +40,7 @@ export default function UpdateFruit({ item }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="container__form">
+    <form onSubmit={handleSubmit(onSubmit)} className="container-form">
       <section className="container_form_field">
         <Input
           name="scientific_name"
