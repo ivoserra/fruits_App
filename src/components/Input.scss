@@ -1,0 +1,39 @@
+.field_input{
+    display:flex;
+    flex-direction: column;
+
+    .Error{
+        color:red;
+        font-size: 0.8rem;
+        margin:1rem 0;
+    }
+
+    input, textarea{
+        width:100%;
+        margin-top:1.5rem;
+        border:none;
+        border-bottom: 1px solid grey;
+        outline:none;
+        resize:none;
+        height:25px;
+    }
+    
+    textarea{
+        outline:none;
+        height:100px;
+        resize:none;
+        margin: 1rem 0;
+        font-family: 'Ubuntu', sans-serif;
+    
+        &:focus{
+            border:none;
+            border:3px solid red;
+            border-radius: 5px;
+        }
+    }
+    
+    input:focus{
+        outline: none;
+        border-bottom: 3px solid red;
+    }
+}

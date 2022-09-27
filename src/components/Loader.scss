@@ -1,0 +1,23 @@
+@keyframes load {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+    
+}
+
+.Loader{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:90vh;
+
+    .loading__icon{
+        font-size: 5rem;
+        animation: load 1s linear infinite;
+    }
+    
+}

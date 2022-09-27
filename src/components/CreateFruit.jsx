@@ -6,6 +6,8 @@ import { Input } from "./Input";
 import Loader from "./Loader";
 import { MessageErrorComponent } from "./MessageErrorComponent";
 
+
+
 export default function CreateFruit() {
   const navigate = useNavigate();
   const {

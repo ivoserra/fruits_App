@@ -2,6 +2,8 @@ import React from 'react'
 import {TbFaceIdError} from 'react-icons/tb'
 import { useLocation } from 'react-router-dom'
 
+import './MessageErrorComponent.scss'
+
 export const MessageErrorComponent = ({error}) => {
 
   console.log(error)

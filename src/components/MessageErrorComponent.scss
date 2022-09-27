@@ -1,0 +1,32 @@
+.Message{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:900px;
+  
+
+    .message__icon{
+        font-size: 5rem;
+    }
+
+    p{
+        margin-top:3rem;
+        font-size: 1rem;
+    }
+
+    button{
+        margin-top:3rem;
+        padding:0.5rem;
+        border:none;
+        background-color: white;
+        cursor:pointer;
+
+        &:hover{
+            color:gray;
+            scale:1.1;
+            border-bottom: 1px solid gray;
+        }
+    }
+       
+}

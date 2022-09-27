@@ -4,6 +4,7 @@ import { GET_FRUITS } from "../queries/queries.js";
 import Loader from "./Loader.jsx";
 import MessageErrorComponent from "./MessageErrorComponent.jsx";
 
+import './ListofFruits.scss'
 
 export default  function ListOfFruits(){
 

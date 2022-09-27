@@ -1,0 +1,37 @@
+.List{
+    margin-top: 100px;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1{
+       color:black;
+       font-size: 2rem;
+    }
+   
+    .list__inner{
+        margin-top:50px;
+        width:70%;
+        height:100%;
+        display:flex;
+        justify-content: center;
+        flex-wrap:wrap;
+      
+    }
+
+    .fruit{
+        text-decoration: none;
+        color:black;
+        cursor:pointer;
+        margin:0.5rem;
+        font-size: 2rem;
+    }
+
+    .fruit:hover{
+        color: rgb(155, 255, 5);
+        scale: 1.1;
+    }
+
+}

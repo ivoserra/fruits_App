@@ -1,6 +1,8 @@
 import React from 'react'
 import {RiLoader4Line} from 'react-icons/ri'
 
+import './Loader.scss'
+
 const Loader = () => {
 
   return (

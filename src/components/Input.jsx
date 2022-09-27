@@ -1,6 +1,8 @@
 import React from "react";
 import { ErrorMessage } from "@hookform/error-message";
 
+import './Input.scss'
+
 // different approach as Error Message does: 
 /* const InputError = ({ errors, name }) => {
   return (
