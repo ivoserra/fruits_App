@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App';
 import UserContextProvider from './Context/UserContext';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { FILTER_FRUIT_FAMILY } from './queries/queries';
 
 
 const defaultOptions= {
@@ -21,6 +22,7 @@ const client = new ApolloClient({
   uri:'https://fruits-api.netlify.app/graphql',
   cache: new InMemoryCache(),
   defaultOptions,
+  query: FILTER_FRUIT_FAMILY
   
 
 });

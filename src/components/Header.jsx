@@ -15,6 +15,8 @@ export const Header = () => {
         <Link to="/" className="button" onClick={e => setEdit(false)}><p>Home</p></Link>
         <Link to="/create" className="button" onClick={e=>setEdit(false)}><p>Create</p></Link>
         </section>
+
+        
     </section>
   )
 }

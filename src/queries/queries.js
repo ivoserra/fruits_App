@@ -112,6 +112,23 @@ const UPDATE_FRUIT = gql`
   }
 `;
 
+const FILTER_FRUIT_FAMILY = gql`
+query filterFruitsFam($family:String!){
+	filterFruitsFam(family:$family ){
+    id
+		fruit_name
+	}
+}
+`
+
+const FILTER_FRUIT_ORIGIN = gql`
+query filterFruitsOri($origin: String!){
+  filterFruitsOri(origin:$origin){
+    id
+    fruit_name
+  }
+}`
 
 
-export { GET_FRUITS, FRUIT, ADD_FRUIT, UPDATE_FRUIT }
+
+export { GET_FRUITS, FRUIT, ADD_FRUIT, UPDATE_FRUIT, FILTER_FRUIT_FAMILY , FILTER_FRUIT_ORIGIN}
