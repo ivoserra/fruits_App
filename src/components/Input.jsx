@@ -32,7 +32,7 @@ export const Input = ({ label, name, register, errors, defaultValue }) => {
     ) {
       return {
         value: alphaNum,
-        message: "Only numbers and letters with accents allowed",
+        message: "Numbers, letters, accents and spcial characters , . - are allowed",
       };
     }
 

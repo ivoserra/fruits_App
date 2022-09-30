@@ -2,13 +2,13 @@ import { useMutation } from "@apollo/client";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { UserContext } from "../Context/UserContext";
-import { UPDATE_FRUIT } from "../queries/queries";
+import { FRUIT, GET_FRUITS, UPDATE_FRUIT } from "../queries/queries";
 import { Input } from "./Input";
 import Loader from "./Loader";
 import MessageComponent from "./MessageErrorComponent";
 
 
-export default function UpdateFruit({ item }) {
+export default function UpdateFruit({ item, setFruit }) {
   // toggle editor
   const { setEdit } = useContext(UserContext);
 
@@ -20,21 +20,23 @@ export default function UpdateFruit({ item }) {
   } = useForm({ defaultValues: item });
 
   // graphql
-  const [updateFruit, { loading, error }] = useMutation(
+  const [updateFruit, { loading, error , refetch }] = useMutation(
     UPDATE_FRUIT,
-    {
-      onCompleted: (result) => {
-        console.log("result", result);
+
+    { refetchQueries: [{ query: GET_FRUITS }, "GetFruits"],
+      onCompleted: (result) => { 
+        console.log(result)
+        setFruit(result.updateFruit)
       },
     },
-    { refetchQueries: [{ query: UPDATE_FRUIT }, "Fruit"] }
+   
   );
 
   if (loading) return <Loader />;
   if (error) return <MessageComponent error={error} />;
 
   const onSubmit = (fruit) => {
-    fruit.id = item.id;
+    fruit.id = item.id
     updateFruit({ variables: { ...fruit } });
     setEdit(false);
   };

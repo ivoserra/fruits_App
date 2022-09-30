@@ -8,24 +8,25 @@ import './ListofFruits.scss'
 
 import { useState } from "react";
 import { useEffect } from "react";
-import { clear } from "@testing-library/user-event/dist/clear.js";
+
 
 export default  function ListOfFruits(){
     
-    const [ searchResult, setSearchResult] = useState(undefined)
-    const [ optionFilter, setOptionFilter]= useState(null)
+
+    const [ input, setInput ] = useState('')
+    const [ optionFilter, setOptionFilter]= useState('')
     const [ refresh, setRefresh ] = useState(false) 
-    const [ isSearchActive, setIsSearchActive] =useState(false)
-    
-    const { data, loading, error, refetch } = useQuery(GET_FRUITS); 
-    const [GetFilterOrigin,{ data:filterOriData, loading:filterOriLoading, error:filterOriError, refetch:fetchFilterOri}] = useLazyQuery(FILTER_FRUIT_ORIGIN,{ variables: searchResult })
-    const [GetFilterFruits,{ data:filterData, loading:filterLoading, error:filterError, refetch:fetchFilter}] = useLazyQuery(FILTER_FRUIT_FAMILY,{ variables : searchResult} )
+
+    const { data, loading, error } = useQuery(GET_FRUITS); 
+    const [getFilterOrigin,{ data:filterOriData, loading:filterOriLoading, error:filterOriError, }] = useLazyQuery(FILTER_FRUIT_ORIGIN)
+    const [getFilterFruits,{ data:filterData, loading:filterLoading, error:filterError,}] = useLazyQuery(FILTER_FRUIT_FAMILY)
 
    
     const [fruits, setFruits]= useState([])
 
     useEffect(()=>{
         if(data && !loading){
+            console.log(data)
             return setFruits(data.fruits)
         }
        
@@ -34,14 +35,16 @@ export default  function ListOfFruits(){
 
     useEffect(()=>{
         if(filterData && !filterLoading) {
+            console.log(filterData)
             return setFruits(filterData.filterFruitsFam)
         }
         
 
-    },[filterData, filterLoading])
-
+    },[filterData, filterLoading])    
+    
     useEffect(()=>{
         if(filterOriData && !filterOriLoading) {
+            console.log(filterOriData)
             return setFruits(filterOriData.filterFruitsOri)
         }
 
@@ -53,25 +56,32 @@ export default  function ListOfFruits(){
     if( error || filterError || filterOriError ) return <MessageErrorComponent error={error}/>;    
 
     function ClearSearch(){
-        setSearchResult("")
-        setOptionFilter(undefined)
+        setInput('')
+        setOptionFilter('')
         setRefresh(!refresh)
-        setIsSearchActive(false)
-        refetch()
-    }
-
-    function GetResult(){
-        console.log('functionFilter', searchResult)
-        if(optionFilter === "origin" && searchResult !== undefined) { 
-            fetchFilterOri({searchResult})
-        } else if(optionFilter === "family" && searchResult !== undefined) {
-             fetchFilter({searchResult})
-        
-        } else return        
+      
         
     }
 
-    console.log(data)
+    function GetResult(e){
+        e.preventDefault()
+    
+        if(optionFilter === 'origin') { 
+           return getFilterOrigin({variables : {"origin": input }})
+        } 
+
+        if(optionFilter === 'family'){
+            return getFilterFruits({variables : { "family" : input }})
+           
+        }
+
+        return 
+
+        }        
+        
+    
+
+
     return(
     <>
         <section className="List">
@@ -82,10 +92,10 @@ export default  function ListOfFruits(){
                         <option value="family">family</option>
                         <option value="origin">origin</option>
                     </select>
-                    <input name={optionFilter} onChange={e => setSearchResult({[e.target.name] : e.target.value})} type="string" placeholder="search"/>
+                    <input  onChange={e => setInput(e.target.value)} type="string" placeholder="search"/>
                 </section>
                 <section className="list-search-btn">
-                    <button onClick={GetResult}>search</button>
+                    <button onClick={(e) => GetResult(e)}>search</button>
                     <button onClick ={ClearSearch}>clear</button>
                 </section>
               

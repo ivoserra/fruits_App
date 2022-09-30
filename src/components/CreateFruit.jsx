@@ -1,34 +1,42 @@
 import { useMutation, useQuery } from "@apollo/client";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { ADD_FRUIT, GET_FRUITS } from "../queries/queries";
 import { Input } from "./Input";
 import Loader from "./Loader";
 import { MessageErrorComponent } from "./MessageErrorComponent";
+import Validate from "./Validate";
 
 
 
 export default function CreateFruit() {
-  const navigate = useNavigate();
+
+  const [isSuccessful, setIsSuccessful] = useState(false)
+
   const {
     register,
-    handleSubmit,
+    handleSubmit,reset,
     formState: { errors },
   } = useForm();
+
+
 
   // graphql
   const { data } = useQuery(GET_FRUITS);
   const [addFruit, { loading, error }] = useMutation(ADD_FRUIT, {
     refetchQueries: [{ query: GET_FRUITS }, "GetFruits"],
-    onCompleted: () => navigate("/"),
+    onCompleted:()=> setIsSuccessful(true),
+      
+      
+    
   });
 
   // form
   const onSubmit = (item) => {
     item.id = String(data.fruits.length + 1);
-    console.log(item);
     addFruit({ variables: { ...item } });
-    console.log(data);
+    reset();
+    
   };
 
   if (loading) return <Loader />;
@@ -132,8 +140,10 @@ export default function CreateFruit() {
             errors={errors}
           />
           </section>
-
-          <input type="submit" className="create__button" />
+          { isSuccessful ?  <Validate setIsSuccessful={setIsSuccessful}/> 
+          :
+          <input type="submit" className="create__button"/> 
+          }
         </form>
         </div>
       </div>
